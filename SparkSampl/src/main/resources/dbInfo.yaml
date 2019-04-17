@@ -1,0 +1,52 @@
+dbName: spark_db
+tableName: student
+colNames: [name, rollno, phone, email]
+sqlFilePath: /home/surender/sqlQueries.sql
+outputFilePath: /home/surender/output
+isSQL: yes/no
+table:
+  -tableName: student
+    databaseName: stdDB
+    selectColumn:
+      -std_id
+      -name
+      -fatherName
+      #-ROW_NUMBER() OVER(ORDER BY fees)
+    aggregateColumn:
+      -min(fees)
+      -max(marks)
+    whereCondition:
+      -std_id in (11,12,14)
+      -name=Rajesh
+      -company=cts
+    join:
+      -joinTable: Teacher
+        joinClause: left
+        joinCondition:
+          -std_id=teacher_id and a_id=b_id
+      -joinTable: StudentDetail
+        joinClause: right
+        joinCondition:
+          -std_id=std_id
+      
+    orderByCondition:
+      -std_id
+      -name
+     
+  -tableName:Teacher
+    databaseName: TeachDB
+    selectColumn:
+      -teacher_id
+      -teacher_name
+      -teacher_salary
+    whereCondition:
+      -teacher_id in (13,14,56)
+      -salary > 10000
+      
+  -tableName:studentDetail
+    databaseName: stdDB 
+  
+  
+  select std_id, tech_id from student a left join b on (a.std_id = b.teach_id) where id=11;
+  
+  

@@ -1,0 +1,5 @@
+dbName: spark_db
+tableName: student
+colNames: [name, rollno, phone, email]
+sqlFilePath: /home/surender/sqlQueries.sql
+outputFilePath: /home/surender/output
